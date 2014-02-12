@@ -7,7 +7,7 @@ import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
 import lejos.robotics.navigation.DifferentialPilot;
 
-public class Timefollowpid {
+public class LineFollow {
 
 	private DifferentialPilot pilot;
 	private LightSensor sensor;
@@ -15,7 +15,7 @@ public class Timefollowpid {
 	private static final int maxlight = 60;
 
 
-	public Timefollowpid(DifferentialPilot pilot, LightSensor sensor) {
+	public LineFollow(DifferentialPilot pilot, LightSensor sensor) {
 		super();
 		this.pilot = pilot;
 		this.sensor = sensor;
