@@ -1,6 +1,4 @@
-package week3;
 import java.util.Timer;
-
 import lejos.nxt.Button;
 import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
