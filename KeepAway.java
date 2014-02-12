@@ -7,32 +7,36 @@ import lejos.robotics.navigation.DifferentialPilot;
 import lejos.nxt.addon.OpticalDistanceSensor;
 
 public class KeepAway {
-
-	private static final double max = 1000;
-	private static final double min = 200;
+	
+	
+	private static final double max = 1000; //the distance where the robot will start to slow down from
+	private static final double min = 200; //the ideal distance the robot wants to be at
 	private DifferentialPilot pilot;
 	private OpticalDistanceSensor u;
 	private double speed;
 
+	//standard constructor for the pilot and optical sensor
 	public KeepAway(DifferentialPilot pilot, OpticalDistanceSensor u) {
 		super();
 		this.pilot = pilot;
 		this.u = u;
 	}
 
+	//the method where all the calculations and actions of the robot take place
 	public void start() {
-		pilot.forward();
+		pilot.forward(); 
+		
 		while (true) {
+			
 			double curr = u.getDistance();
-		//	pilot.forward();
- 
-			if (curr >= max) {
+
+			if (curr >= max) {//in this case the current distance is too far away so it just runs at max speed
 				speed = pilot.getMaxTravelSpeed();
 				pilot.forward();
-			} else {
+			} else {//now that the distance is less than the max it will proportionately change based on its value
 				
 				speed = pilot.getMaxTravelSpeed() * ((curr-min) / (max-min));
-				
+				//even though a speed can be negative, we discovered that that doesn't set the robot to reverse so we have to use this if statement to tell the robot when to reverse
 				if(speed<0)
 				{
 					pilot.backward();
@@ -41,11 +45,8 @@ public class KeepAway {
 					pilot.forward();
 				}
 			} 
-
 			
 			pilot.setTravelSpeed(speed);
-			System.out.println(speed);
-
 		}
 	}
 
