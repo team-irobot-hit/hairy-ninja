@@ -8,6 +8,11 @@ import lejos.nxt.SensorPort;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.util.Delay;
 
+   /* 
+   This class will allow the robot to follow a line in a grid
+   and detect whether a junction is ahead. When it senses a 
+   junction, it will execute a move from the script.
+   */
 public class Junction {
 
 	private DifferentialPilot pilot;
